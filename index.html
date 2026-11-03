@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl of the Indian Ocean | Sri Lanka</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #0f4c3a; /* Jungle Green */
+            --secondary: #d4af37; /* Ceylon Gold */
+            --accent: #00a8cc; /* Ocean Blue */
+            --dark: #0a191e;
+            --light: #f4f7f6;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- ANIMATED NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            padding: 15px 8%;
+            background: rgba(10, 25, 30, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--light);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        /* Navbar Hover Effect */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--light);
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s;
+        }
+
+        /* --- HERO SECTION & PARTICLES --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(10,25,30,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: floatUp 1.5s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Liquid Hover Button */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            color: var(--dark);
+            background: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            z-index: 1;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--light);
+            transition: all 0.4s;
+            z-index: -1;
+            border-radius: 50px;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- MOTION GRAPHICS & INTRO --- */
+        .intro {
+            padding: 100px 8%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            overflow: hidden;
+        }
+
+        /* Floating Animated Background Shapes */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: pulse 8s infinite alternate;
+        }
+        .shape-1 { width: 300px; height: 300px; background: var(--primary); top: -50px; left: -100px; }
+        .shape-2 { width: 400px; height: 400px; background: rgba(0, 168, 204, 0.2); bottom: -100px; right: -100px; animation-delay: 2s; }
+
+        .intro-text {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+
+        .section-title span {
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        .intro-text p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .intro-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat-box h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+
+        .stat-box p {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .intro-image {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .intro-image img {
+            width: 80%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: float 6s ease-in-out infinite;
+            border: 2px solid var(--glass-border);
+        }
+
+        /* --- PARALLAX SECTION --- */
+        .parallax {
+            height: 60vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .parallax-1 {
+            background-image: url('https://images.unsplash.com/photo-1546708973-b339540b5162?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .parallax-2 {
+            background-image: url('https://images.unsplash.com/photo-1578507065211-1c4e99a5fd24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .parallax-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 25, 30, 0.6);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+            padding: 0 20px;
+        }
+
+        .parallax-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        /* --- 3D TILT CARDS (DESTINATIONS) --- */
+        .destinations {
+            padding: 100px 8%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* 3D Card Styling */
+        .tilt-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            height: 450px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tilt-card:hover .card-img {
+            transform: scale(1.15);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(10,25,30,0.95) 20%, transparent);
+            /* Pop out effect in 3D space */
+            transform: translateZ(40px); 
+            transition: all 0.4s;
+        }
+
+        .card-tag {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .card-content h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #ddd;
+            line-height: 1.5;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        /* Hover Reveal Description */
+        .tilt-card:hover .card-content p {
+            opacity: 1;
+            max-height: 150px;
+            margin-top: 10px;
+        }
+
+        /* --- EXPERIENCES (HOVER EXPAND GALLERY) --- */
+        .experiences {
+            padding: 100px 8%;
+        }
+
+        .exp-container {
+            display: flex;
+            height: 400px;
+            gap: 15px;
+        }
+
+        .exp-panel {
+            flex: 1;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: flex 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9);
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+        }
+
+        .exp-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .exp-panel:hover {
+            flex: 3;
+        }
+
+        .exp-info {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.2s;
+            min-width: 250px;
+        }
+
+        .exp-panel:hover .exp-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .exp-icon {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--secondary);
+            transition: opacity 0.3s;
+        }
+
+        .exp-panel:hover .exp-icon {
+            opacity: 0;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #050d10;
+            padding: 60px 8% 30px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .socials {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .socials a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+
+        .socials a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        /* --- SCROLL ANIMATION CLASSES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- KEYFRAMES (MOTION GRAPHICS) --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        /* --- RESPONSIVE DESIGN & MOBILE MENU --- */
+        @media (max-width: 991px) {
+            .hero h1 { font-size: 3.5rem; }
+            .intro { flex-direction: column; text-align: center; }
+            .intro-stats { justify-content: center; }
+            .parallax { background-attachment: scroll; } /* Fixes iOS parallax bug */
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn { display: block; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background: rgba(10, 25, 30, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+                border-left: 1px solid var(--glass-border);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a { font-size: 1.5rem; }
+
+            .hero h1 { font-size: 2.8rem; }
+            .section-title { font-size: 2.2rem; }
+            
+            .exp-container {
+                flex-direction: column;
+                height: 600px;
+            }
+            .exp-icon { display: none; }
+            .exp-info { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Navbar -->
+    <header id="navbar">
+        <a href="#" class="logo"><i class="fa-solid fa-leaf"></i> SRI<span>LANKA</span></a>
+        <div class="menu-btn" id="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Wonder</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#experiences">Culture</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section with Particles -->
+    <section class="hero" id="home">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <span class="hero-subtitle">Welcome to Paradise</span>
+            <h1>The Pearl of the Indian Ocean</h1>
+            <a href="#destinations" class="btn">Explore The Beauty</a>
+        </div>
+    </section>
+
+    <!-- Intro Section with Motion Graphics -->
+    <section class="intro" id="about">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        
+        <div class="intro-text reveal">
+            <h2 class="section-title">An Island of <span>Timeless</span> Magic</h2>
+            <p>Sri Lanka is a land of serendipity. From golden beaches kissed by turquoise waves to misty mountains carpeted in emerald tea plantations, this island packs an incredible variety of landscapes, wildlife, and ancient heritage into a compact tropical paradise.</p>
+            <div class="intro-stats">
+                <div class="stat-box">
+                    <h3>8</h3>
+                    <p>UNESCO Sites</p>
+                </div>
+                <div class="stat-box">
+                    <h3>1,330<small>km</small></h3>
+                    <p>Coastline</p>
+                </div>
+                <div class="stat-box">
+                    <h3>2,500+</h3>
+                    <p>Years of History</p>
+                </div>
+            </div>
+        </div>
+        <div class="intro-image reveal">
+            <img src="https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sri Lanka Stilt Fishermen">
+        </div>
+    </section>
+
+    <!-- Parallax Divider 1 -->
+    <div class="parallax parallax-1">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content reveal">
+            <h2>Misty Mountains & Lush Valleys</h2>
+            <p>Take one of the world's most scenic train rides through the heart of the Ceylon tea country.</p>
+        </div>
+    </div>
+
+    <!-- 3D Tilt Cards Section (Destinations) -->
+    <section class="destinations" id="destinations">
+        <div class="section-header reveal">
+            <h2 class="section-title">Breathtaking <span>Destinations</span></h2>
+            <p>Hover over the cards to experience 3D depth and discover the secrets of the island.</p>
+        </div>
+
+        <div class="grid">
+            <!-- Card 1: Sigiriya -->
+            <div class="tilt-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
+                <img src="https://images.unsplash.com/photo-1588598198321-9735fd52455b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sigiriya" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Ancient Wonder</span>
+                    <h3>Sigiriya Rock</h3>
+                    <p>Known as the 'Lion Rock', this ancient fortress rises 200 meters above the jungle, featuring heavenly frescoes and water gardens.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Ella -->
+            <div class="tilt-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
+                <img src="https://images.unsplash.com/photo-1546708973-b339540b5162?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ella" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Hill Country</span>
+                    <h3>Ella & Nine Arch</h3>
+                    <p>A mountain village surrounded by cloud forests and tea plantations, home to the iconic colonial-era Nine Arch Bridge.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Mirissa -->
+            <div class="tilt-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
+                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mirissa" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Tropical Coast</span>
+                    <h3>Mirissa Beach</h3>
+                    <p>Famous for Coconut Tree Hill, vibrant nightlife, surfing waves, and being one of the best places in the world to spot Blue Whales.</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Kandy -->
+            <div class="tilt-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
+                <img src="https://images.unsplash.com/photo-1625736300986-1953d222749f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kandy" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Cultural Heart</span>
+                    <h3>Sacred Kandy</h3>
+                    <p>Set on a plateau surrounded by mountains, Kandy is home to the sacred Temple of the Tooth Relic and vibrant cultural dances.</p>
+                </div>
+            </div>
+
+            <!-- Card 5: Yala -->
+            <div class="tilt-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
+                <img src="https://images.unsplash.com/photo-1534567153574-2b12153a87f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Yala" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Wild Safari</span>
+                    <h3>Yala National Park</h3>
+                    <p>Experience untamed nature. Yala boasts the highest density of leopards in the world, alongside wild elephants and sloth bears.</p>
+                </div>
+            </div>
+
+            <!-- Card 6: Galle -->
+            <div class="tilt-card reveal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
+                <img src="https://images.unsplash.com/photo-1612862862126-865765df2ded?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Galle" class="card-img">
+                <div class="card-content">
+                    <span class="card-tag">Colonial Heritage</span>
+                    <h3>Galle Dutch Fort</h3>
+                    <p>Walk through cobble-stoned streets lined with Dutch-colonial buildings, boutique cafes, and an iconic seaside lighthouse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Divider 2 -->
+    <div class="parallax parallax-2">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content reveal">
+            <h2>"To visit Sri Lanka is to fall in love with nature all over again."</h2>
+        </div>
+    </div>
+
+    <!-- Interactive Hover Expand Section -->
+    <section class="experiences" id="experiences">
+        <div class="section-header reveal">
+            <h2 class="section-title">Unforgettable <span>Experiences</span></h2>
+            <p>Hover over the panels to expand the vibrant culture of Sri Lanka.</p>
+        </div>
+
+        <div class="exp-container reveal">
+            <div class="exp-panel" style="background-image: url('https://images.unsplash.com/photo-1589301760014-d929f3979dbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                <i class="fa-solid fa-bowl-food exp-icon"></i>
+                <div class="exp-info">
+                    <h3>Authentic Spices & Cuisine</h3>
+                    <p>Taste the world-famous Ceylon Cinnamon, fiery curries, and Kottu Roti.</p>
+                </div>
+            </div>
+            <div class="exp-panel" style="background-image: url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                <i class="fa-solid fa-masks-theater exp-icon"></i>
+                <div class="exp-info">
+                    <h3>Vibrant Festivals</h3>
+                    <p>Witness the Esala Perahera featuring fire-dancers and lavishly decorated elephants.</p>
+                </div>
+            </div>
+            <div class="exp-panel" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                <i class="fa-solid fa-person-swimming exp-icon"></i>
+                <div class="exp-info">
+                    <h3>Surfing & Diving</h3>
+                    <p>Ride the waves in Arugam Bay or dive into shipwrecks along the southern coast.</p>
+                </div>
+            </div>
+            <div class="exp-panel" style="background-image: url('https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                <i class="fa-solid fa-spa exp-icon"></i>
+                <div class="exp-info">
+                    <h3>Ayurveda & Wellness</h3>
+                    <p>Rejuvenate your soul with ancient healing practices and tropical yoga retreats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#" class="logo" style="justify-content: center;"><i class="fa-solid fa-leaf"></i> SRI<span>LANKA</span></a>
+        <p style="margin-top: 15px; color: #888;">Designed to showcase the paradise of the Indian Ocean.</p>
+        <div class="socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p style="font-size: 0.8rem; color: #555;">&copy; 2023 Beauty of Sri Lanka. All rights reserved.</p>
+    </footer>
+
+    <!-- EXTERNAL SCRIPTS -->
+    <!-- Particles.js for Hero Background -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Vanilla-Tilt.js for 3D Cards -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <!-- CUSTOM JAVASCRIPT -->
+    <script>
+        // 1. ANIMATED NAVBAR ON SCROLL
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 2. RESPONSIVE MOBILE MENU
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        const menuIcon = menuBtn.querySelector('i');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 3. SCROLL REVEAL (MOTION GRAPHICS)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+
+        // 4. PARTICLE.JS CONFIGURATION (Magical Fireflies Effect)
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#d4af37", "#ffffff", "#00a8cc"] },
+                "shape": { "type": "circle" },
+                "opacity": {
+                    "value": 0.6,
+                    "random": true,
+                    "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false }
+                },
+                "line_linked": { "enable": false }, // Disabled lines for a natural "firefly/dust" look
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "top",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "bubble" },
+                    "onclick": { "enable": true, "mode": "repulse" },
+                    "resize": true
+                },
+                "modes": {
+                    "bubble": { "distance": 200, "size": 6, "duration": 2, "opacity": 1, "speed": 3 },
+                    "repulse": { "distance": 200, "duration": 0.4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
